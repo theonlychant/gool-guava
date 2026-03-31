@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cpu.CpuHelperTest07" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-03-31T08:45:38" hostname="JHenryPC" time="0.029">
+  <properties/>
+  <testcase name="testParallelAndExecutor07" classname="com.example.cpu.CpuHelperTest07" time="0.01"/>
+  <testcase name="testMainRuns" classname="com.example.cpu.CpuHelperTest07" time="0.019"/>
+  <system-out><![CDATA[Processors: 12
+System CPU load: 0.08055555555555556
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

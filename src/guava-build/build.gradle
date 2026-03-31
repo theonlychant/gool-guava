@@ -1,0 +1,41 @@
+apply plugin: 'java'
+
+group = 'com.example.guava'
+version = '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    implementation 'com.google.guava:guava:32.1.2-jre'
+    testCompile 'junit:junit:4.13.2'
+}
+
+// Put outputs under this guava-build folder
+buildDir = file('.')
+
+// Provide an explicit task to run tests via JUnit runner in case the
+// environment doesn't expose the standard `test` task.
+task runTests(type: JavaExec) {
+    description = 'Run JUnit tests using org.junit.runner.JUnitCore'
+    group = 'verification'
+    classpath = sourceSets.test.runtimeClasspath
+    main = 'org.junit.runner.JUnitCore'
+    doFirst {
+        def classesDir = sourceSets.test.output.classesDirs.singleFile
+        def tests = fileTree(dir: classesDir, include: '**/*Test.class')
+        if (tests.isEmpty()) {
+            println 'No test classes found.'
+        } else {
+            args = tests.collect { f ->
+                def rel = f.path - classesDir.path - File.separator
+                def className = rel.replaceAll('\\\\', '/').replaceAll('/', '.').replaceAll(/\.class$/, '')
+                return className
+            }
+        }
+    }
+}

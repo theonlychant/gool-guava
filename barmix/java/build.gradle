@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+group = 'com.example.barmix'
+version = '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+// Include the cpuhelper main sources from the existing project so tests can reference them
+sourceSets {
+    main {
+        java {
+            srcDirs += ['../../java/cpuhelper/src/main/java']
+        }
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.13.2'
+}
