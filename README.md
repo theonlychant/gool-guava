@@ -96,3 +96,9 @@ Contact
 If you want me to make further structural changes (add README sections,
 add Gradle wrappers, clean up large folders, or add CI linting), tell me which
 task to do next.
+
+References
+--
+- Google Guava (source repository): https://github.com/google/guava
+- Guava releases: https://github.com/google/guava/releases/latest
+- Guava site and API docs: https://guava.dev
