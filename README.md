@@ -1,5 +1,7 @@
 # gool -- CPU helpers and Guava build tooling
 
+[![Go CI](https://github.com/theonlychant/gool-guava/actions/workflows/go-ci.yml/badge.svg)](https://github.com/theonlychant/gool-guava/actions/workflows/go-ci.yml) [![Java CI](https://github.com/theonlychant/gool-guava/actions/workflows/java-ci.yml/badge.svg)](https://github.com/theonlychant/gool-guava/actions/workflows/java-ci.yml)
+
 This repository collects small, practical helpers and example projects for
 inspecting and profiling CPU/GPU environments in Go and Java, plus a
 centralized Guava build/test area and CI workflows.
