@@ -24,14 +24,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gradle
 
-      - name: Run java/cpuhelper tests
+      - name: Discover and run Gradle tests
         run: |
-          gradle -p java/cpuhelper test --no-daemon --console=plain
-
-      - name: Run src/guava-build tests
-        run: |
-          if [ -d src/guava-build ]; then gradle -p src/guava-build test --no-daemon --console=plain; fi
-
-      - name: Run barmix/java tests
-        run: |
-          if [ -d barmix/java ]; then gradle -p barmix/java test --no-daemon --console=plain; fi
+          set -e
+          echo "Looking for Gradle projects (build.gradle)"
+          found=0
+          while IFS= read -r proj; do
+            # skip Gradle cache and wrapper directories
+            if echo "$proj" | grep -q "\.gradle"; then
+              continue
+            fi
+            echo "== Running gradle test for: $proj"
+            gradle -p "$proj" test --no-daemon --console=plain
+            found=1
+          done < <(find . -name 'build.gradle' -not -path './**/.gradle/*' -exec dirname {} \; | sort -u)
+          if [ "$found" -eq 0 ]; then
+            echo "No Gradle projects found; skipping Java tests"
+          fi
